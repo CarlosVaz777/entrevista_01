@@ -104,6 +104,41 @@ const Formulario = () => {
 
   };
 
+  const arrayEstados = [
+    "Aguascalientes",
+    "Baja California",
+    "Baja California Sur",
+    "Campeche",
+    "Chiapas",
+    "Chihuahua",
+    "Ciudad de México",
+    "Coahuila",
+    "Colima",
+    "Durango",
+    "Estado de México",
+    "Guanajuato",
+    "Guerrero",
+    "Hidalgo",
+    "Jalisco",
+    "Michoacán",
+    "Morelos",
+    "Nayarit",
+    "Nuevo León",
+    "Oaxaca",
+    "Puebla",
+    "Querétaro",
+    "Quintana Roo",
+    "San Luis Potosí",
+    "Sinaloa",
+    "Sonora",
+    "Tabasco",
+    "Tamaulipas",
+    "Tlaxcala",
+    "Veracruz",
+    "Yucatán",
+    "Zacatecas",
+  ];
+
   return (
     <form class=" row g-3 callout"   style={{width: '60rem'}} onSubmit={handleSubmit}>
         <h1>Identicación</h1>
@@ -120,7 +155,7 @@ const Formulario = () => {
                 </div>
 
                 <div class="col-md-4">
-                <label class="form-label " htmlFor="primerApellido">Primer Apellidos*</label>
+                <label class="form-label " htmlFor="primerApellido">Primer Apellido*</label>
                 <input 
                     type="text" 
                     class="form-control" 
@@ -132,7 +167,7 @@ const Formulario = () => {
                 </div>
 
                 <div class="col-md-4">
-                <label class="form-label">Segundo Apellidos*</label>
+                <label class="form-label">Segundo Apellido*</label>
                 <input 
                     type="text" 
                     class="form-control" 
@@ -223,15 +258,16 @@ const Formulario = () => {
                     class="form-select" 
                     id="estado"
                     value={formulario.estado}
-                    onChange={handleChange}>
-                    <option selected></option>
-                    <option>Puebla</option>
+                    onChange={handleChange} 
+                    >
+                        <option selected >Selecciona Estado</option>
+                        {arrayEstados.map((estado) => <option value={estado}>{estado}</option>)}
                 </select>
                     {errores.estado && <p style={{color: 'red'}}>{errores.estado}</p>}
                 </div>
 
                 <div class="col-6">
-                <label class="form-label">Delegación / Muunicipio*</label>
+                <label class="form-label">Delegación / Municipio*</label>
                 <input 
                     type="text" 
                     id="delegacion"
