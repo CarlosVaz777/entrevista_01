@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import UserMap from '../pages/usersMap';
 
+//Para el extra de MAPA utilice el Cliente de AXIOS como prueba de que se maneja FETCH y AXIOS
 const UsersFetchMap = () => {
   const [user, setUser] = useState(null);
 

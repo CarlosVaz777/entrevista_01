@@ -27,8 +27,8 @@ const Formulario = () => {
   const soloLetras = (input) => /^[a-zA-Z ]+$/.test(input);
   const soloNumeros = (input) => /^\d+$/.test(input);
   const alfanumerico = (input) => /^[a-zA-Z0-9 ]+$/.test(input);
-  //const validarCURP = (curp) => /^[A-Z]{4}\d{6}[HM][A-Z]{5}[A-Z0-9]\d$/(curp);
-  //const validarRFC = (rfc) => /^([A-ZÑ&]{3,4})?(?:\d{2})(?:\d{2})(?:\d{2})(?:[A-Z\d]{3})?$/(rfc);
+  const validarCURP = (curp) => /^[A-Z]{4}\d{6}[HM][A-Z]{5}[A-Z0-9]\d$/.test(curp);
+  const validarRFC = (rfc) => /^([A-ZÑ&]{3,4})?(?:\d{2})(?:\d{2})(?:\d{2})(?:[A-Z\d]{3})?$/.test(rfc);
 
   const handleChange = (e) => {
     setFormulario({
@@ -43,8 +43,8 @@ const Formulario = () => {
     if (!soloLetras(formulario.nombre)) nuevosErrores.nombre = 'Este campo es requerido';
     if (!soloLetras(formulario.primerApellido)) nuevosErrores.primerApellido = 'Este campo es requerido';
     if (!soloLetras(formulario.segundoApellido)) nuevosErrores.segundoApellido = 'Este campo es requerido';
-    if (!alfanumerico(formulario.curp)) nuevosErrores.curp = 'CURP inválida';
-    if (!alfanumerico(formulario.rfc)) nuevosErrores.rfc = 'RFC inválido';
+    if (!validarCURP(formulario.curp)) nuevosErrores.curp = 'CURP inválida';
+    if (!validarRFC(formulario.rfc)) nuevosErrores.rfc = 'RFC inválido';
 
     if (!soloLetras(formulario.estado)) nuevosErrores.estado = 'Este campo es requerido';
     if (!alfanumerico(formulario.calle)) nuevosErrores.calle = 'Este campo es requerido y números';
@@ -70,7 +70,7 @@ const Formulario = () => {
         icon: "success"
       });
       enviarFormulario(); 
-      // Después de enviar, reseteamos el estado del formulario
+      // Después de enviar los datos se limpia form o reset form
       setFormulario({
         nombre: '',
         primerApellido: '',
