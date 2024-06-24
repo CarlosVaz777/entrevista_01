@@ -1,7 +1,10 @@
-import React, { useState }  from "react";
+import React, {  useRef, useState }  from "react";
 import "bootstrap/dist/css/bootstrap.css";
+import Swal from "sweetalert2";
 
 const Formulario = () => {
+  
+  const formRef = useRef(null);  
 
     const [formulario, setFormulario] = useState({
       nombre: '',
@@ -62,10 +65,31 @@ const Formulario = () => {
     e.preventDefault();
 
     if (validarFormulario()) {
-      alert('Campos validados correctamente');
-      enviarFormulario();
+      Swal.fire({
+        title: "Campos validados correctamente",
+        icon: "success"
+      });
+      enviarFormulario(); 
+      // Después de enviar, reseteamos el estado del formulario
+      setFormulario({
+        nombre: '',
+        primerApellido: '',
+        segundoApellido: '',
+        curp: '',
+        rfc: '',
+        codigoPostal: '',
+        calle: '',
+        numeroExterior: '',
+        numeroInterior: '',
+        estado: '',
+        delegacion: '',
+        colonia: '',
+      });
     } else {
-      alert('Existen campos por validar');
+      Swal.fire({
+        title: "Existen campos por validar",
+        icon: "warning"
+      });
     }
   };
 
@@ -143,10 +167,10 @@ const Formulario = () => {
 
   return (
     <div className="container">
-        <form className=" row g-3" style={{ justifyItems:'center', justifyContent:'center', alignItems:'center' }} onSubmit={handleSubmit}>
+        <form className=" row g-3 " style={{ justifyItems:'center', justifyContent:'center', alignItems:'center' }} onSubmit={handleSubmit} ref={formRef}>
         <h1 style={{ textAlign:'center' }}>Identicación</h1>
                 <div className="col-md-4 " >
-                <label className="form-label" htmlFor="nombre" >Nombre*</label>
+                <label className="form-label fw-bolder" htmlFor="nombre" style={{color: '#0B5ED7'}}>Nombre*</label>
                 <input
                     className="form-control"
                     type="text"
@@ -158,7 +182,7 @@ const Formulario = () => {
                 </div>
 
                 <div className="col-md-4">
-                <label className="form-label " htmlFor="primerApellido" >Primer Apellido*</label>
+                <label className="form-label fw-bolder " htmlFor="primerApellido" style={{color: '#0B5ED7'}}>Primer Apellido*</label>
                 <input 
                     type="text" 
                     className="form-control" 
@@ -170,7 +194,7 @@ const Formulario = () => {
                 </div>
 
                 <div className="col-md-4">
-                <label className="form-label" >Segundo Apellido*</label>
+                <label className="form-label fw-bolder" style={{color: '#0B5ED7'}}>Segundo Apellido*</label>
                 <input 
                     type="text" 
                     className="form-control" 
@@ -182,7 +206,7 @@ const Formulario = () => {
                 </div>
 
                 <div className="col-6">
-                <label className="form-label" >CURP*</label>
+                <label className="form-label fw-bolder" style={{color: '#0B5ED7'}} >CURP*</label>
                 <input 
                     type="text" 
                     className="form-control" 
@@ -195,7 +219,7 @@ const Formulario = () => {
                 </div>
 
                 <div className="col-6">
-                <label className="form-label">RFC*</label>
+                <label className="form-label fw-bolder" style={{color: '#0B5ED7'}}>RFC (con homoclave)*</label>
                 <input 
                     type="text" 
                     className="form-control"  
@@ -208,7 +232,7 @@ const Formulario = () => {
                 </div>
 
                 <div className="col-3">
-                <label className="form-label">Codigo Postal*</label>
+                <label className="form-label fw-bolder" style={{color: '#0B5ED7'}}>Codigo Postal*</label>
                 <input 
                     type="number" 
                     className="form-control" 
@@ -220,7 +244,7 @@ const Formulario = () => {
                 </div>
 
                 <div className="col-9">
-                <label className="form-label">Calle*</label>
+                <label className="form-label fw-bolder" style={{color: '#0B5ED7'}}>Calle*</label>
                 <input 
                     type="text" 
                     className="form-control" 
@@ -232,7 +256,7 @@ const Formulario = () => {
                 </div>
 
                 <div className="col-2">
-                <label className="form-label">Número exterior*</label>
+                <label className="form-label fw-bolder" style={{color: '#0B5ED7'}}>Número exterior*</label>
                 <input 
                     type="number" 
                     id="numeroExterior"
@@ -244,7 +268,7 @@ const Formulario = () => {
                 </div>
 
                 <div className="col-2">
-                <label className="form-label">Número interior*</label>
+                <label className="form-label fw-bolder" style={{color: '#0B5ED7'}}>Número interior*</label>
                 <input 
                     type="text" 
                     id="numeroInterior"
@@ -256,21 +280,21 @@ const Formulario = () => {
                 </div>
 
                 <div className="col-8">
-                <label className="form-label">Estado*</label>
+                <label className="form-label fw-bolder" style={{color: '#0B5ED7'}}>Estado*</label>
                 <select 
                     className="form-select" 
                     id="estado"
                     value={formulario.estado}
                     onChange={handleChange} 
                     >
-                        <option selected ></option>
+                        <option  ></option>
                         {arrayEstados.map((estado, index) => <option value={estado} key={index}>{estado}</option>)}
                 </select>
                     {errores.estado && <p style={{color: 'red'}}>{errores.estado}</p>}
                 </div>
 
                 <div className="col-6">
-                <label className="form-label">Delegación / Municipio*</label>
+                <label className="form-label fw-bolder" style={{color: '#0B5ED7'}}>Delegación / Municipio*</label>
                 <input 
                     type="text" 
                     id="delegacion"
@@ -282,7 +306,7 @@ const Formulario = () => {
                 </div>
 
                 <div className="col-6">
-                <label className="form-label">Colonia*</label>
+                <label className="form-label fw-bolder" style={{color: '#0B5ED7'}}>Colonia*</label>
                 <input 
                     type="text" 
                     id="colonia"
@@ -293,7 +317,7 @@ const Formulario = () => {
                     {errores.colonia && <p style={{color: 'red'}}>{errores.colonia}</p>}
                 </div>
         <div style={{ justifyItems:'center', justifyContent:'center', alignItems:'center', display: 'flex' }}>
-            <button className="btn btn-primary" type="submit">Guardar</button>
+            <button className="btn btn-primary" type="submit" >Guardar</button>
         </div>
     </form>
     </div>

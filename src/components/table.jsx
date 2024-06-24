@@ -16,7 +16,7 @@ useEffect(() => {
 }, []);
 
  return(
-    <div className="container" >
+    <div className="container " >
 
         <div  >
             <Formulario />
@@ -46,6 +46,9 @@ useEffect(() => {
                 ))}
             </tbody>
         </table>
+        </div>
+        <div className="mt-4">
+            <h1>Extra...</h1>
         </div>
     </div>
  ); 
