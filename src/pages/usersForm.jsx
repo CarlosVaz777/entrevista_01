@@ -10,11 +10,12 @@ const Formulario = () => {
       curp: '',
       rfc: '',
       codigoPostal: '',
+      calle: '',
       numeroExterior: '',
       numeroInterior: '',
       estado: '',
       delegacion: '',
-      colonia: ''
+      colonia: '',
     });
 
 
@@ -36,15 +37,16 @@ const Formulario = () => {
   const validarFormulario = () => {
     const nuevosErrores = {};
 
-    if (!soloLetras(formulario.nombre)) nuevosErrores.nombre = 'Solo se permiten letras';
-    if (!soloLetras(formulario.primerApellido)) nuevosErrores.primerApellido = 'Solo se permiten letras';
-    if (!soloLetras(formulario.segundoApellido)) nuevosErrores.segundoApellido = 'Solo se permiten letras';
-    if (!soloLetras(formulario.estado)) nuevosErrores.estado = 'Solo se permiten letras';
-    if (!soloLetras(formulario.delegacion)) nuevosErrores.delegacion = 'Solo se permiten letras';
-    if (!soloLetras(formulario.colonia)) nuevosErrores.colonia = 'Solo se permiten letras';
-
+    if (!soloLetras(formulario.nombre)) nuevosErrores.nombre = 'Este campo es requerido';
+    if (!soloLetras(formulario.primerApellido)) nuevosErrores.primerApellido = 'Este campo es requerido';
+    if (!soloLetras(formulario.segundoApellido)) nuevosErrores.segundoApellido = 'Este campo es requerido';
     if (!alfanumerico(formulario.curp)) nuevosErrores.curp = 'CURP inválida';
     if (!alfanumerico(formulario.rfc)) nuevosErrores.rfc = 'RFC inválido';
+
+    if (!soloLetras(formulario.estado)) nuevosErrores.estado = 'Este campo es requerido';
+    if (!alfanumerico(formulario.calle)) nuevosErrores.calle = 'Este campo es requerido y números';
+    if (!soloLetras(formulario.delegacion)) nuevosErrores.delegacion = 'Este campo es requerido';
+    if (!soloLetras(formulario.colonia)) nuevosErrores.colonia = 'Este campo es requerido';
 
     if (!soloNumeros(formulario.codigoPostal) || formulario.codigoPostal.length !== 5) nuevosErrores.codigoPostal = 'Debe ser un número de 5 dígitos';
     if (!soloNumeros(formulario.numeroExterior) || formulario.numeroExterior <= 5) nuevosErrores.numeroExterior = 'Debe ser un número de 5 dígitos';
@@ -140,12 +142,13 @@ const Formulario = () => {
   ];
 
   return (
-    <form class=" row g-3 callout"   style={{width: '60rem'}} onSubmit={handleSubmit}>
-        <h1>Identicación</h1>
-                <div class="col-md-4 " >
-                <label class="form-label" htmlFor="nombre">Nombre*</label>
+    <div className="container">
+        <form className=" row g-3" style={{ justifyItems:'center', justifyContent:'center', alignItems:'center' }} onSubmit={handleSubmit}>
+        <h1 style={{ textAlign:'center' }}>Identicación</h1>
+                <div className="col-md-4 " >
+                <label className="form-label" htmlFor="nombre" >Nombre*</label>
                 <input
-                    class="form-control"
+                    className="form-control"
                     type="text"
                     id="nombre"
                     value={formulario.nombre}
@@ -154,11 +157,11 @@ const Formulario = () => {
                     {errores.nombre && <span style={{ color: 'red' }}>{errores.nombre}</span>}
                 </div>
 
-                <div class="col-md-4">
-                <label class="form-label " htmlFor="primerApellido">Primer Apellido*</label>
+                <div className="col-md-4">
+                <label className="form-label " htmlFor="primerApellido" >Primer Apellido*</label>
                 <input 
                     type="text" 
-                    class="form-control" 
+                    className="form-control" 
                     id="primerApellido"
                     value={formulario.primerApellido}
                     onChange={handleChange} 
@@ -166,11 +169,11 @@ const Formulario = () => {
                     {errores.primerApellido && <p style={{color: 'red'}}>{errores.primerApellido}</p>}
                 </div>
 
-                <div class="col-md-4">
-                <label class="form-label">Segundo Apellido*</label>
+                <div className="col-md-4">
+                <label className="form-label" >Segundo Apellido*</label>
                 <input 
                     type="text" 
-                    class="form-control" 
+                    className="form-control" 
                     id="segundoApellido"
                     value={formulario.segundoApellido}  
                     onChange={handleChange} 
@@ -178,11 +181,11 @@ const Formulario = () => {
                     {errores.segundoApellido && <p style={{color: 'red'}}>{errores.segundoApellido}</p>}
                 </div>
 
-                <div class="col-6">
-                <label class="form-label">CURP*</label>
+                <div className="col-6">
+                <label className="form-label" >CURP*</label>
                 <input 
                     type="text" 
-                    class="form-control" 
+                    className="form-control" 
                     id="curp"
                     maxLength={18} 
                     value={formulario.curp}
@@ -191,11 +194,11 @@ const Formulario = () => {
                         {errores.curp && <p style={{color: 'red'}}>{errores.curp}</p>}
                 </div>
 
-                <div class="col-6">
-                <label class="form-label">RFC*</label>
+                <div className="col-6">
+                <label className="form-label">RFC*</label>
                 <input 
                     type="text" 
-                    class="form-control"  
+                    className="form-control"  
                     id="rfc"
                     maxLength={13} 
                     value={formulario.rfc}
@@ -204,11 +207,11 @@ const Formulario = () => {
                     {errores.rfc && <p style={{color: 'red'}}>{errores.rfc}</p>}
                 </div>
 
-                <div class="col-3">
-                <label class="form-label">Codigo Postal*</label>
+                <div className="col-3">
+                <label className="form-label">Codigo Postal*</label>
                 <input 
                     type="number" 
-                    class="form-control" 
+                    className="form-control" 
                     id="codigoPostal"
                     value={formulario.codigoPostal}
                     onChange={handleChange}
@@ -216,11 +219,11 @@ const Formulario = () => {
                     {errores.codigoPostal && <p style={{color: 'red'}}>{errores.codigoPostal}</p>}
                 </div>
 
-                <div class="col-9">
-                <label class="form-label">Calle*</label>
+                <div className="col-9">
+                <label className="form-label">Calle*</label>
                 <input 
                     type="text" 
-                    class="form-control" 
+                    className="form-control" 
                     id="calle"
                     value={formulario.calle}
                     onChange={handleChange} 
@@ -228,71 +231,73 @@ const Formulario = () => {
                     {errores.calle && <p style={{color: 'red'}}>{errores.calle}</p>}
                 </div>
 
-                <div class="col-2">
-                <label class="form-label">Número exterior*</label>
+                <div className="col-2">
+                <label className="form-label">Número exterior*</label>
                 <input 
                     type="number" 
                     id="numeroExterior"
-                    class="form-control" 
+                    className="form-control" 
                     value={formulario.numeroExterior}
                     onChange={handleChange} 
                 />
                     {errores.numeroExterior && <p style={{color: 'red'}}>{errores.numeroExterior}</p>}
                 </div>
 
-                <div class="col-2">
-                <label class="form-label">Número interior*</label>
+                <div className="col-2">
+                <label className="form-label">Número interior*</label>
                 <input 
                     type="text" 
                     id="numeroInterior"
                     value={formulario.numeroInterior}
-                    class="form-control" 
+                    className="form-control" 
                     onChange={handleChange} 
                 />
                     {errores.numeroInterior && <p style={{color: 'red'}}>{errores.numeroInterior}</p>}
                 </div>
 
-                <div class="col-8">
-                <label class="form-label">Estado*</label>
+                <div className="col-8">
+                <label className="form-label">Estado*</label>
                 <select 
-                    class="form-select" 
+                    className="form-select" 
                     id="estado"
                     value={formulario.estado}
                     onChange={handleChange} 
                     >
-                        <option selected >Selecciona Estado</option>
-                        {arrayEstados.map((estado) => <option value={estado}>{estado}</option>)}
+                        <option selected ></option>
+                        {arrayEstados.map((estado, index) => <option value={estado} key={index}>{estado}</option>)}
                 </select>
                     {errores.estado && <p style={{color: 'red'}}>{errores.estado}</p>}
                 </div>
 
-                <div class="col-6">
-                <label class="form-label">Delegación / Municipio*</label>
+                <div className="col-6">
+                <label className="form-label">Delegación / Municipio*</label>
                 <input 
                     type="text" 
                     id="delegacion"
                     value={formulario.delegacion}
-                    class="form-control" 
+                    className="form-control" 
                     onChange={handleChange} 
                 />
                     {errores.delegacion && <p style={{color: 'red'}}>{errores.delegacion}</p>}
                 </div>
 
-                <div class="col-6">
-                <label class="form-label">Colonia*</label>
+                <div className="col-6">
+                <label className="form-label">Colonia*</label>
                 <input 
                     type="text" 
                     id="colonia"
                     value={formulario.colonia}
-                    class="form-control" 
+                    className="form-control" 
                     onChange={handleChange} 
                 />
                     {errores.colonia && <p style={{color: 'red'}}>{errores.colonia}</p>}
                 </div>
-        <div>
-            <button className="btn btn-primary" type="submit">Enviar</button>
+        <div style={{ justifyItems:'center', justifyContent:'center', alignItems:'center', display: 'flex' }}>
+            <button className="btn btn-primary" type="submit">Guardar</button>
         </div>
     </form>
+    </div>
+    
   );
 };
 

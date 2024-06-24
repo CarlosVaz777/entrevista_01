@@ -16,31 +16,31 @@ useEffect(() => {
 }, []);
 
  return(
-    <div class="float-sm-start">
+    <div className="container" >
 
-        <div  style={{ textAlign:'center',justifyItems:'center', justifyContent:'center', display:'flex', marginBottom:'30px'}}>
+        <div  >
             <Formulario />
         </div>
 
-        <div style={{width: '60rem'}} class="table-responsive">
-        <table class="table table-hover table-responsive" >
+        <div style={{ justifyItems:'center', justifyContent:'center', alignItems:'center' }} className="table-responsive">
+        <table  className="table table-hover table-responsive"  >
             <thead>
                 <tr>
-                <th >ID</th>
-                <th >Name</th>
-                <th >Email</th>
-                <th >Website</th>
+                <th className="text_left">ID</th>
+                <th className="text_left">Name</th>
+                <th className="text_left">Email</th>
+                <th className="text_left">Website</th>
                 <th colSpan={2}>Action</th>
                 </tr>
             </thead>
             <tbody>
             {data?.map((person) => (
                 <tr key={person.id}>
-                <td >{person.id}</td>
-                <td>{person.name}</td>
-                <td>{person.email}</td>
-                <td>{person.website}</td>
-                <td  align="center"> <EditIcon style={{color: 'green'}}/></td>
+                <td  className="text_left" >{person.id}</td>
+                <td  className="text_left">{person.name}</td>
+                <td  className="text_left">{person.email}</td>
+                <td  className="text_left">{person.website}</td>
+                <td  className="text_left"> <EditIcon style={{color: 'green'}}/></td>
                 <td > <DeleteIcon style={{color: 'red'}}/></td>
                 </tr>
                 ))}

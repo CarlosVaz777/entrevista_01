@@ -6,11 +6,11 @@ function App() {
 
   return (
     <>
-     <main className='App'>
-            <div  style={{textAlign:'center',justifyItems:'center', justifyContent:'center',  display:'flex'}}>
+     <div className='  container' >
+            <div  style={{ justifyItems:'center', justifyContent:'center', alignItems:'center', display:'flex' }}>
               <TablaConsumo />
             </div>
-          </main>
+          </div>
     </>
          
   );
